@@ -1,0 +1,6 @@
+# dev envs
+*.vscode
+
+# caches
+__pycache__
+.pytest_cache
