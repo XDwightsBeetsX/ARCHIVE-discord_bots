@@ -1,15 +1,14 @@
+"""
+An example python discord-bot with some template methods.
+"""
 
-import time
 import discord
-import asyncio
-
 from utils.parsing import parseKeychainFromFile
-from utils.Keychain import Keychain
 
 
 class DiscordBot(object):
     """
-    An example discord bot with some classic methods.
+    An example python discord-bot with some template methods.
     """
     def __init__(self, keychain):
         """
@@ -25,22 +24,29 @@ class DiscordBot(object):
         self.Name = "Example Bot"
         self.SpecialChar = '!'
 
+        self.CM_PRE = "[EXAMPLE_BOT] - "
         self.LogFilepath = "logs/log.log"
         self.StatsFilepath = "stats/stats.txt"
     
     def run(self):
         """
         Begins the client routine.
+
+        Tests API connection with `Client.event async def on_ready()`
         """
-        print(f"Starting {self.Name}...")
+        print(f"{self.CM_PRE}Starting {self.Name}...")
+        
+        @self.Client.event
+        async def on_ready():
+            print(f"{self.CM_PRE}{self.Name} is connected to Discord.")
+        
         self.Client.run(self.Keychain.BotToken)
 
-    def sendMessage(self, message):
+    async def sendMessage(self, channel, message):
         """
-        1. Connect to server with Keychain
-        2. Post message
+        Posts `message` in `channel`.
         """
-        pass
+        await channel.send(message)
 
     def writeStatsToFile(self):
         """
@@ -53,8 +59,8 @@ class DiscordBot(object):
                 statsFile.writelines(statlines)
         
         except Exception as e:
-            print("[ERROR] - There was an issue writing to the stats file:")
-            print(e)
+            print(f"{self.CM_PRE}[ERROR] - There was an issue writing to the stats file:")
+            print(f">{e}")
 
     def logLine(self, line):
         """
@@ -65,14 +71,16 @@ class DiscordBot(object):
                 logFile.write(line + '\n')
         
         except Exception as e:
-            print("[ERROR] - There was an issue writing to the log file:")
-            print(e)
+            print(f"{self.CM_PRE}[ERROR] - There was an issue writing to the log file:")
+            print(f">{e}")
 
 
+# =========================================================================================== #
 if __name__ == "__main__":
-    print("Starting Example Bot...")
+    keychain = parseKeychainFromFile("example_bot.txt")
+    DB = DiscordBot(keychain)
+    
+    print(f"Starting {DB.Name}...")
     print("The world has much to fear.")
 
-    keychain = parseKeychainFromFile("keys/example_bot_key.txt")
-    DB = DiscordBot(keychain)
     DB.run()

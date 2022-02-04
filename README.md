@@ -1,6 +1,8 @@
 # discord-bots
 
-<img src="imgs/discord_logo.png" style="width: 16px;"/> Discord bots! <img src="imgs/discord_logo.png" style="width: 16px;"/>
+<img src="imgs/discord_logo.png" style="width: 16px;"/> **Discord Bots!** <img src="imgs/discord_logo.png" style="width: 16px;"/>
+
+*Bots can and should:*
 
 - Interact on the server
 - Track member stats
@@ -14,6 +16,7 @@ Table of Contents
 
 - [discord-bots](#discord-bots)
   - [Usage](#usage)
+    - [Add the Bot to Your Server](#add-the-bot-to-your-server)
     - [Download the repo](#download-the-repo)
     - [Check the requirements.txt](#check-the-requirementstxt)
     - [Add Your Discord Secrets](#add-your-discord-secrets)
@@ -21,10 +24,19 @@ Table of Contents
   - [The Bots](#the-bots)
     - [Dwight](#dwight)
     - [Example Bot](#example-bot)
-
----
+  - [Docs](#docs)
 
 ## Usage
+
+### Add the Bot to Your Server
+
+Follow the guide [here](https://realpython.com/how-to-make-a-discord-bot-python/#creating-a-bot)
+
+- Starting a server
+- Creating a bot on the [Discord Dev Portal](https://discord.com/developers/docs)
+- Adding the bot to your server
+  - Permissions
+- Getting started with Discord Bots in python
 
 ### Download the repo
 
@@ -57,7 +69,7 @@ Use one of the following or just download the `.zip` [here.](https://github.com/
 - Store tokens/keys in a folder like `keys`
   - **Add your folder to the `.gitignore`** to keep your key(s) safe
   - Add files like `keys/dwight.txt`
-  - Parse these in with the bot using `utils/key_parser.py`'s `getKeys()`
+  - Parse these in with the bot using `utils/Parsing`
 
 ### Run the Bot(s)
 
@@ -69,7 +81,7 @@ Easily run bots like any other python script!
 
 ## [The Bots](docs/all_bots.md)
 
-### [Dwight](dwight.py)
+### [Dwight](./dwight.py)
 
 The first bot!
 
@@ -80,7 +92,7 @@ The first bot!
 | `!message_count` | Dwights lets you know how many messages have been sent. |
 | `!member_count` | Dwight tells you how popular your server is |
 
-### [Example Bot](_ex_bot.py)
+### [Example Bot](./example.py)
 
 A template for making new bots.
 
@@ -91,3 +103,17 @@ Offers some skeleton methods:
 - `sendMessage(message)`
 - `writeStatsToFile()`
 - `logLine(line)`
+
+## [Docs](./docs/)
+
+- General
+  - [bot suggestions](docs/all_bots.md)
+  - [creating a discord app](docs/create_application.md)
+  - [generating bot tokens](docs/generating_bot_tokens.md)
+- Bots
+  - [dwight](docs/dwight.md)
+
+> *with reference to:* [*realpython's tutorial*](https://realpython.com/how-to-make-a-discord-bot-python/)
+>
+> *links:*
+> [*Discord Developer Portal*](https://discord.com/developers/docs)

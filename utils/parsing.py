@@ -5,7 +5,7 @@ from .globals import *
 from utils.Keychain import Keychain
 
 
-def parseKeychainFromFile(folder="keys", filename="key.txt"):
+def parseKeychainFromFile(filename, folder="keys"):
     """
     Parses in the bot's private information into a dictionary of {key:value} pairs.
     This is used to return a `Keychain` object.
@@ -15,8 +15,12 @@ def parseKeychainFromFile(folder="keys", filename="key.txt"):
     
     # Required bot startup parameters
     print(f"{CM_UTILS}required values in expected file format:")
+    
+    header = f"============> {filepath} <============"
+    print(header)
     for rk in REQUIRED:
         print(f'{rk}{KF_SPLIT}"{rk}"')
+    print('='*len(header))
     
     # File parsing
     try:
@@ -34,8 +38,9 @@ def parseKeychainFromFile(folder="keys", filename="key.txt"):
         
         # Not all required 
         if not keychain.hasAllRequired():
-            print(f"{CM_UTILS}Did not read all required parameters. Please double-check your key file and try again.")
-            print("Quitting")
+            print(f"{CM_UTILS}[ERROR]: Did not read all required parameters.")
+            print(f">Please double-check your key file and try again.")
+            print(f">Quitting...")
             quit()
         
         # All required parameters met. Lock the keychain and return data for bot.
@@ -44,6 +49,7 @@ def parseKeychainFromFile(folder="keys", filename="key.txt"):
 
     # Catch file errors or other strange beasts
     except Exception as e:
-        print(f"{CM_UTILS}there was an error reading data from the file.\nCheck your file input.")
-        print(f"{CM_UTILS}[ERROR]: {e}")
+        print(f"{CM_UTILS}[ERROR] - There was an error reading data from the file.")
+        print(f">Check your file input.")
+        print(f">{e}")
         quit()
