@@ -1,7 +1,16 @@
-# security
+# key security
 keys
 key
 keychain
+secret
+important
+password
+passwords
+
+# logs
+log
+logs
+*.log
 
 # dev envs
 *.vscode

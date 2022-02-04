@@ -1,0 +1,5 @@
+# Discord API
+discord
+
+# Allow asynchronous methods
+asyncio
